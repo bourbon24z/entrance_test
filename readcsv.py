@@ -18,3 +18,15 @@ with open (in_path, mode = 'r', newline= "", encoding= "utf-8") as f:
         except ValueError:
             continue
         totals[date] += amount
+
+with open (out_path, mode = 'w', newline= "", encoding= "utf-8") as f:
+    writer = csv.DictWriter(f, fieldnames=["date", "amount"])
+    writer.writeheader()
+    for date in sorted(totals.keys()):
+        writer.writerow(
+            {
+                "date": date, "amount": int(totals[date])
+        if totals [date].is_integer()
+        else round(totals[date], 2)
+             }
+    )
